@@ -5,7 +5,11 @@ class PetsController < ApplicationController
   end
 
   def show
-    @pet = Pet.find(params[:id])
+    begin
+      @pet = Pet.find(params[:id])
+    rescue
+      @pet = nil
+    end
   end
 
 end
