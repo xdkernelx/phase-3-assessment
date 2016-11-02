@@ -34,7 +34,7 @@ Do your best to build to all the features listed. If you get stuck and need to i
 
 # STEPS
 
-1. **Fork this repository and clone it down.** (It’s a nearly blank Rails application with a few additional files in it.) Create a working branch for yourself and _git_ to it.
+1. **Fork this repository and clone it down.** (It’s a nearly blank repo, with just this readme and a seeds file.  Fork and clone rather than starting from scratch to make it easier to make a pull request at the end.) Create a working branch for yourself and _git_ to it.
 
 2. We’ve provided a seed file of data, but you won’t be able to use it until your models are set up properly.
 
