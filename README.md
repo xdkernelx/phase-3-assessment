@@ -38,7 +38,8 @@ Do your best to build to all the features listed. If you get stuck and need to i
 
 2. We’ve provided a seed file of data, but you won’t be able to use it until your models are set up properly.
 
-  - Find the seed file (saved in its conventional place) and set up your models and migrations to reflect the data structure there.
+  - Generate a rails app
+  - Move the seed file to its conventional place and set up your models and migrations to reflect the data structure there.
   - Do not be thrown off by the "pet" attribute -- that's just syntactic sugar to establish the usual sort of association once the correct model is in place.
   - You should wind up with two resources: Pets and Toys. Each Pet has several Toys.
 
