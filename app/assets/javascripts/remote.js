@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function() {
         shortest = index;
       }
     });
-    console.log(response[shortest]['description']);
+    console.log("Toy Description: " + response[shortest]['description']);
   });
 
 });
