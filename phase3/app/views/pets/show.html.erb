@@ -1,1 +1,8 @@
-<%= @pet.name %>
+<% if  @pet %>
+  <%= @pet.name %>
+<% else %>
+  <p>
+    Sorry, that pet is having an existential crisis.
+  </p>
+<% end %>
+
