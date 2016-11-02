@@ -1,0 +1,2354 @@
+  [1m[35m (37.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8164690378834615080);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePets (20161102161933)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (18.0ms)[0m  [1m[35mCREATE TABLE "pets" ("id" serial primary key, "name" character varying(64), "breed" character varying(64), "age" integer, "cute" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20161102161933"]]
+  [1m[35m (15.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateToys (20161102161938)
+  [1m[35m (14.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "toys" ("id" serial primary key, "description" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20161102161938"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-11-02 16:24:51 UTC], ["updated_at", 2016-11-02 16:24:51 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8164690378834615080)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'pets'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'toys'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "pets" ("name", "breed", "age", "cute", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Jeeves"], ["breed", "Roborovski Hamster"], ["age", 2], ["cute", true], ["created_at", 2016-11-02 16:24:57 UTC], ["updated_at", 2016-11-02 16:24:57 UTC]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "pets" ("name", "breed", "age", "cute", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Boopity Schmoopity"], ["breed", "Shiba Inu"], ["age", 4], ["cute", true], ["created_at", 2016-11-02 16:24:57 UTC], ["updated_at", 2016-11-02 16:24:57 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "pets" ("name", "breed", "age", "cute", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Anastasia the Terrible"], ["breed", "Tarantula"], ["age", 1], ["cute", false], ["created_at", 2016-11-02 16:24:57 UTC], ["updated_at", 2016-11-02 16:24:57 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "pets" ("name", "breed", "age", "cute", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Jeeves"], ["breed", "Roborovski Hamster"], ["age", 2], ["cute", true], ["created_at", 2016-11-02 16:26:05 UTC], ["updated_at", 2016-11-02 16:26:05 UTC]]
+  [1m[35m (15.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "pets" ("name", "breed", "age", "cute", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Boopity Schmoopity"], ["breed", "Shiba Inu"], ["age", 4], ["cute", true], ["created_at", 2016-11-02 16:26:05 UTC], ["updated_at", 2016-11-02 16:26:05 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "pets" ("name", "breed", "age", "cute", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Anastasia the Terrible"], ["breed", "Tarantula"], ["age", 1], ["cute", false], ["created_at", 2016-11-02 16:26:05 UTC], ["updated_at", 2016-11-02 16:26:05 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (153.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "phase3_development"[0m
+  [1m[35m (129.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "phase3_test"[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8164690378834615080);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePets (20161102161933)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "pets" ("id" serial primary key, "name" character varying(64), "breed" character varying(64), "age" integer, "cute" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20161102161933"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateToys (20161102161938)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE "toys" ("id" serial primary key, "description" character varying, "pet_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20161102161938"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-11-02 16:29:07 UTC], ["updated_at", 2016-11-02 16:29:07 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(8164690378834615080)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'pets'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'toys'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "pets" ("name", "breed", "age", "cute", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Jeeves"], ["breed", "Roborovski Hamster"], ["age", 2], ["cute", true], ["created_at", 2016-11-02 16:29:10 UTC], ["updated_at", 2016-11-02 16:29:10 UTC]]
+  [1m[35m (11.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "pets" ("name", "breed", "age", "cute", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Boopity Schmoopity"], ["breed", "Shiba Inu"], ["age", 4], ["cute", true], ["created_at", 2016-11-02 16:29:10 UTC], ["updated_at", 2016-11-02 16:29:10 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "pets" ("name", "breed", "age", "cute", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Anastasia the Terrible"], ["breed", "Tarantula"], ["age", 1], ["cute", false], ["created_at", 2016-11-02 16:29:10 UTC], ["updated_at", 2016-11-02 16:29:10 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "toys" ("description", "pet_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["description", "Bouncy Ball"], ["pet_id", 2], ["created_at", 2016-11-02 16:29:10 UTC], ["updated_at", 2016-11-02 16:29:10 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "toys" ("description", "pet_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["description", "Rubber Chicken"], ["pet_id", 2], ["created_at", 2016-11-02 16:29:10 UTC], ["updated_at", 2016-11-02 16:29:10 UTC]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "toys" ("description", "pet_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["description", "KONG"], ["pet_id", 2], ["created_at", 2016-11-02 16:29:10 UTC], ["updated_at", 2016-11-02 16:29:10 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "toys" ("description", "pet_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["description", "USB Cables"], ["pet_id", 1], ["created_at", 2016-11-02 16:29:10 UTC], ["updated_at", 2016-11-02 16:29:10 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "toys" ("description", "pet_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["description", "DragonBall"], ["pet_id", 3], ["created_at", 2016-11-02 16:29:10 UTC], ["updated_at", 2016-11-02 16:29:10 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "toys" ("description", "pet_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["description", "Squeaker"], ["pet_id", 1], ["created_at", 2016-11-02 16:29:10 UTC], ["updated_at", 2016-11-02 16:29:10 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "toys" ("description", "pet_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["description", "PS4 Controller"], ["pet_id", 3], ["created_at", 2016-11-02 16:29:10 UTC], ["updated_at", 2016-11-02 16:29:10 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2016-11-02 09:36:34 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/railties-5.0.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/railties-5.0.0.1/lib/rails/templates/rails/welcome/index.html.erb (5.7ms)
+Completed 200 OK in 58ms (Views: 31.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 09:37:58 -0700
+  
+ActionController::RoutingError (uninitialized constant PetsController):
+  
+activesupport (5.0.0.1) lib/active_support/inflector/methods.rb:268:in `const_get'
+activesupport (5.0.0.1) lib/active_support/inflector/methods.rb:268:in `block in constantize'
+activesupport (5.0.0.1) lib/active_support/inflector/methods.rb:266:in `each'
+activesupport (5.0.0.1) lib/active_support/inflector/methods.rb:266:in `inject'
+activesupport (5.0.0.1) lib/active_support/inflector/methods.rb:266:in `constantize'
+actionpack (5.0.0.1) lib/action_dispatch/http/request.rb:93:in `controller_class'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:30:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.0.1) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.0.1) lib/action_dispatch/routing/route_set.rb:725:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.0.1) lib/active_record/migration.rb:552:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.0.1) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered collection of /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [5 times] (41.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (22.1ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (228.6ms)
+Started GET "/" for ::1 at 2016-11-02 09:39:54 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  Rendered pets/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 891ms (Views: 889.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 09:39:56 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  Rendered pets/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 29ms (Views: 26.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 09:40:00 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  Rendered pets/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 30ms (Views: 27.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 09:40:02 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  Rendered pets/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 46ms (Views: 44.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 09:40:09 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  Rendered pets/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 41ms (Views: 39.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 09:44:25 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  Rendered pets/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 149ms (Views: 146.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 09:44:25 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  Rendered pets/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 30ms (Views: 27.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 09:45:40 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  Rendered pets/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 32ms (Views: 29.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pets" for ::1 at 2016-11-02 09:45:44 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  Rendered pets/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 27ms (Views: 24.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pets" for ::1 at 2016-11-02 09:45:46 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  Rendered pets/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 33ms (Views: 31.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for ::1 at 2016-11-02 09:47:06 -0700
+  
+ArgumentError (Missing :controller key on routes definition, please check your routes.):
+  
+config/routes.rb:10:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.1ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (108.2ms)
+Started GET "/home" for ::1 at 2016-11-02 09:47:23 -0700
+  
+ArgumentError (Missing :controller key on routes definition, please check your routes.):
+  
+config/routes.rb:10:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.7ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (112.8ms)
+Started GET "/home" for ::1 at 2016-11-02 09:47:24 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/home"):
+  
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered collection of /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [5 times] (2.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (139.8ms)
+Started GET "/home" for ::1 at 2016-11-02 09:47:26 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/home"):
+  
+actionpack (5.0.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `block in tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.0.1) lib/active_support/tagged_logging.rb:70:in `tagged'
+railties (5.0.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.6.0) lib/puma/configuration.rb:225:in `call'
+puma (3.6.0) lib/puma/server.rb:578:in `handle_request'
+puma (3.6.0) lib/puma/server.rb:415:in `process_client'
+puma (3.6.0) lib/puma/server.rb:275:in `block in run'
+puma (3.6.0) lib/puma/thread_pool.rb:116:in `block in spawn_thread'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered collection of /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [5 times] (2.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (142.7ms)
+Started GET "/home" for ::1 at 2016-11-02 09:47:31 -0700
+  
+ArgumentError (Missing :controller key on routes definition, please check your routes.):
+  
+config/routes.rb:10:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.2ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (108.4ms)
+Started GET "/home" for ::1 at 2016-11-02 09:47:41 -0700
+  
+ArgumentError (Missing :controller key on routes definition, please check your routes.):
+  
+config/routes.rb:10:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.0ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (112.0ms)
+Started GET "/home" for ::1 at 2016-11-02 09:48:28 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  Rendered pets/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 37ms (Views: 33.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for ::1 at 2016-11-02 09:49:00 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  Rendered pets/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 34ms (Views: 30.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for ::1 at 2016-11-02 09:50:27 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.5ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (12.1ms)
+Completed 200 OK in 45ms (Views: 31.4ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/home" for ::1 at 2016-11-02 09:50:44 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 28ms (Views: 25.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/home" for ::1 at 2016-11-02 09:51:52 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 30ms (Views: 27.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/home" for ::1 at 2016-11-02 09:52:19 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 34ms (Views: 31.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/home" for ::1 at 2016-11-02 09:52:20 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 37ms (Views: 33.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/home" for ::1 at 2016-11-02 09:52:28 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 38ms (Views: 35.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/home" for ::1 at 2016-11-02 09:53:05 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.6ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 36ms (Views: 32.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 09:54:03 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  Rendering toys/index.html.erb within layouts/application
+  Rendered toys/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 31ms (Views: 28.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pets/1" for ::1 at 2016-11-02 09:56:03 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pets/show.html.erb within layouts/application
+  Rendered pets/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 70ms (Views: 36.0ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 09:57:56 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  Rendering toys/index.html.erb within layouts/application
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  Rendered toys/index.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 41ms (Views: 28.9ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 09:58:05 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"2"}
+  Rendering toys/index.html.erb within layouts/application
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  Rendered toys/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 28ms (Views: 25.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 09:58:12 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"3"}
+  Rendering toys/index.html.erb within layouts/application
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  Rendered toys/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 31ms (Views: 27.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:00:18 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  Rendering toys/index.html.erb within layouts/application
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  Rendered toys/index.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 45ms (Views: 35.2ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/pets/1/toys/1" for ::1 at 2016-11-02 10:00:22 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"1"}
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 30ms (Views: 27.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pets/1/toys/" for ::1 at 2016-11-02 10:00:27 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  Rendering toys/index.html.erb within layouts/application
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  Rendered toys/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 34ms (Views: 30.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/1/toys/2" for ::1 at 2016-11-02 10:00:29 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"2"}
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 36ms (Views: 32.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pets/1/toys/2" for ::1 at 2016-11-02 10:00:38 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"2"}
+  Rendering toys/show.html.erb within layouts/application
+  [1m[36mToy Load (0.7ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE (pet_id: '1' AND id: '2')[0m
+  Rendered toys/show.html.erb within layouts/application (11.8ms)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<Toy::ActiveRecord_Relation:0x007facd5515688>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190164836060'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.5ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (109.9ms)
+Started GET "/pets/1/toys/2" for ::1 at 2016-11-02 10:00:39 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"2"}
+  Rendering toys/show.html.erb within layouts/application
+  [1m[36mToy Load (0.7ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE (pet_id: '1' AND id: '2')[0m
+  Rendered toys/show.html.erb within layouts/application (10.6ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<Toy::ActiveRecord_Relation:0x007facd5248248>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190143504900'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.8ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (105.4ms)
+Started GET "/pets/1/toys/1" for ::1 at 2016-11-02 10:00:49 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"1"}
+  Rendering toys/show.html.erb within layouts/application
+  [1m[36mToy Load (0.6ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE (pet_id: '1' AND id: '1')[0m
+  Rendered toys/show.html.erb within layouts/application (9.3ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<Toy::ActiveRecord_Relation:0x007facd5626360>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190145545480'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (8.7ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (116.9ms)
+Started GET "/pets/1/toys/1" for ::1 at 2016-11-02 10:01:26 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"1"}
+  Rendering toys/show.html.erb within layouts/application
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE (pet_id= '1' AND id= '1')[0m
+  Rendered toys/show.html.erb within layouts/application (11.5ms)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 1.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190144720600'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.8ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (112.9ms)
+Started GET "/pets/1/toys/1" for ::1 at 2016-11-02 10:01:27 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"1"}
+  Rendering toys/show.html.erb within layouts/application
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE (pet_id= '1' AND id= '1')[0m
+  Rendered toys/show.html.erb within layouts/application (9.6ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190130638580'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.4ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (117.6ms)
+Started GET "/pets/1/toys/1" for ::1 at 2016-11-02 10:01:28 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"1"}
+  Rendering toys/show.html.erb within layouts/application
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE (pet_id= '1' AND id= '1')[0m
+  Rendered toys/show.html.erb within layouts/application (10.3ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190131863280'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.6ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (115.3ms)
+Started GET "/pets/1/toys/1" for ::1 at 2016-11-02 10:01:50 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"1"}
+  Rendering toys/show.html.erb within layouts/application
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE (pet_id = '1' AND id = '1')[0m
+  Rendered toys/show.html.erb within layouts/application (13.1ms)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 1.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190172117240'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.4ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (117.6ms)
+Started GET "/pets/1/toys/1" for ::1 at 2016-11-02 10:01:51 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"1"}
+  Rendering toys/show.html.erb within layouts/application
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE (pet_id = '1' AND id = '1')[0m
+  Rendered toys/show.html.erb within layouts/application (9.9ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190147357440'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.6ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (114.0ms)
+Started GET "/home" for ::1 at 2016-11-02 10:02:50 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.5ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 44ms (Views: 35.7ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/pets/1/toys/1" for ::1 at 2016-11-02 10:02:52 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"1"}
+  [1m[36mToy Load (0.9ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 1.2ms)
+
+
+  
+NoMethodError (undefined method `call' for #<ActiveRecord::QueryMethods::WhereChain:0x007facd3985b70>
+Did you mean?  caller):
+  
+app/controllers/toys_controller.rb:8:in `show'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.0ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (111.8ms)
+Started GET "/pets/1/toys/1" for ::1 at 2016-11-02 10:02:53 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"1"}
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `call' for #<ActiveRecord::QueryMethods::WhereChain:0x007facd1adcd18>
+Did you mean?  caller):
+  
+app/controllers/toys_controller.rb:8:in `show'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.9ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (104.2ms)
+Started GET "/pets/1/toys/1" for ::1 at 2016-11-02 10:03:16 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"1"}
+  Rendering toys/show.html.erb within layouts/application
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2[0m  [["pet_id", 1], ["id", 1]]
+  Rendered toys/show.html.erb within layouts/application (10.0ms)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 1.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190163364340'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.1ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (111.2ms)
+Started GET "/pets/1/toys/1" for ::1 at 2016-11-02 10:03:50 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"1"}
+  [1m[36mToy Load (1.7ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2[0m  [["pet_id", 1], ["id", 1]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (9.3ms)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 2.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190144801020'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (8.8ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (121.4ms)
+Started GET "/pets/1/toys/2" for ::1 at 2016-11-02 10:04:18 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"2"}
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2[0m  [["pet_id", 1], ["id", 2]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (8.5ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190144740720'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.7ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.3ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.9ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (125.7ms)
+Started GET "/pets/1/toys/3" for ::1 at 2016-11-02 10:04:28 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"3"}
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2[0m  [["pet_id", 1], ["id", 3]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (13.8ms)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190165679140'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.4ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (120.8ms)
+Started GET "/pets/1/toys/4" for ::1 at 2016-11-02 10:04:31 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"4"}
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2[0m  [["pet_id", 1], ["id", 4]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (11.4ms)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 2.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<Toy::ActiveRecord_Relation:0x007facd5310ce8>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190143471980'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.1ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (113.0ms)
+Started GET "/pets/1/toys/5" for ::1 at 2016-11-02 10:04:34 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"5"}
+  [1m[36mToy Load (0.6ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2[0m  [["pet_id", 1], ["id", 5]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (7.8ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190145727780'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.6ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (121.2ms)
+Started GET "/pets/1/toys/6" for ::1 at 2016-11-02 10:04:37 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"6"}
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2[0m  [["pet_id", 1], ["id", 6]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (10.6ms)
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<Toy::ActiveRecord_Relation:0x007facd55c7590>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190145351700'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.9ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (114.9ms)
+Started GET "/pets/1/toys/7" for ::1 at 2016-11-02 10:04:40 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"7"}
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2[0m  [["pet_id", 1], ["id", 7]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (8.3ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190150657860'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.5ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (114.9ms)
+Started GET "/pets/1/toys/8" for ::1 at 2016-11-02 10:04:46 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"8"}
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2[0m  [["pet_id", 1], ["id", 8]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (7.8ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190145431960'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.3ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (127.4ms)
+Started GET "/pets/1/toys/8" for ::1 at 2016-11-02 10:05:07 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"8"}
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2[0m  [["pet_id", 1], ["id", 8]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (7.8ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<ActiveRecord::Relation []>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190144346180'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.5ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (117.3ms)
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:06:23 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  Rendering toys/index.html.erb within layouts/application
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  Rendered toys/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 32ms (Views: 28.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/1/" for ::1 at 2016-11-02 10:06:24 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pets/show.html.erb within layouts/application
+  Rendered pets/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 56ms (Views: 41.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:06:29 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  Rendering toys/index.html.erb within layouts/application
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  Rendered toys/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 31ms (Views: 28.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/1/toys/4" for ::1 at 2016-11-02 10:06:33 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"4"}
+  [1m[36mToy Load (0.6ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2[0m  [["pet_id", 1], ["id", 4]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (10.8ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for #<Toy::ActiveRecord_Relation:0x007facd7c7ac28>):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190165625740'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.8ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (111.9ms)
+  [1m[36mToy Load (0.7ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2[0m  [["pet_id", 1], ["id", 4]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 LIMIT $2[0m  [["pet_id", 1], ["LIMIT", 1]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2 LIMIT $3[0m  [["pet_id", 1], ["id", 4], ["LIMIT", 1]]
+Started GET "/home" for ::1 at 2016-11-02 10:09:08 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 56ms (Views: 46.3ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 10:09:14 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 28ms (Views: 25.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/toys/4" for ::1 at 2016-11-02 10:09:20 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"4"}
+  [1m[36mToy Load (0.2ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2 LIMIT $3[0m  [["pet_id", 1], ["id", 4], ["LIMIT", 1]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 38ms (Views: 25.0ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/pets/1/toys/4" for ::1 at 2016-11-02 10:09:59 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"4"}
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2 LIMIT $3[0m  [["pet_id", 1], ["id", 4], ["LIMIT", 1]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 29ms (Views: 25.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/toys/4" for ::1 at 2016-11-02 10:10:03 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"4"}
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2 LIMIT $3[0m  [["pet_id", 1], ["id", 4], ["LIMIT", 1]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 30ms (Views: 27.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/toys/3" for ::1 at 2016-11-02 10:10:07 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"3"}
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2 LIMIT $3[0m  [["pet_id", 1], ["id", 3], ["LIMIT", 1]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (4.6ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `description' for nil:NilClass):
+    1: <%= @toy.description %>
+  
+app/views/toys/show.html.erb:1:in `_app_views_toys_show_html_erb__1964867702684330301_70190131424620'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (107.7ms)
+Started GET "/pets/1/toys/3" for ::1 at 2016-11-02 10:11:11 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"3"}
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2 LIMIT $3[0m  [["pet_id", 1], ["id", 3], ["LIMIT", 1]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 30ms (Views: 26.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/toys/3" for ::1 at 2016-11-02 10:11:47 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"3"}
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2 LIMIT $3[0m  [["pet_id", 1], ["id", 3], ["LIMIT", 1]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 36ms (Views: 31.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/toys/3" for ::1 at 2016-11-02 10:13:20 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"3"}
+  [1m[36mToy Load (0.2ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2 LIMIT $3[0m  [["pet_id", 1], ["id", 3], ["LIMIT", 1]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 52ms (Views: 40.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:13:24 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 10ms (Views: 6.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:14:07 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/1/toys/4" for ::1 at 2016-11-02 10:14:11 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"4"}
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2 LIMIT $3[0m  [["pet_id", 1], ["id", 4], ["LIMIT", 1]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 39ms (Views: 36.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/toys/6" for ::1 at 2016-11-02 10:14:14 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"6"}
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2 LIMIT $3[0m  [["pet_id", 1], ["id", 6], ["LIMIT", 1]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 40ms (Views: 36.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/toys/5" for ::1 at 2016-11-02 10:14:16 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"5"}
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2 LIMIT $3[0m  [["pet_id", 1], ["id", 5], ["LIMIT", 1]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 46ms (Views: 42.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/toys/5" for ::1 at 2016-11-02 10:15:39 -0700
+Processing by ToysController#show as HTML
+  Parameters: {"pet_id"=>"1", "id"=>"5"}
+  [1m[36mToy Load (0.2ms)[0m  [1m[34mSELECT  "toys".* FROM "toys" WHERE "toys"."pet_id" = $1 AND "toys"."id" = $2 LIMIT $3[0m  [["pet_id", 1], ["id", 5], ["LIMIT", 1]]
+  Rendering toys/show.html.erb within layouts/application
+  Rendered toys/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 29ms (Views: 24.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:15:43 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/7" for ::1 at 2016-11-02 10:15:44 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+Completed 404 Not Found in 8ms (ActiveRecord: 2.4ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Pet with 'id'=7):
+  
+app/controllers/pets_controller.rb:8:in `show'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (105.1ms)
+Started GET "/pets/4" for ::1 at 2016-11-02 10:16:03 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Pet with 'id'=4):
+  
+app/controllers/pets_controller.rb:8:in `show'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.1ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (110.1ms)
+Started GET "/pets/3" for ::1 at 2016-11-02 10:16:07 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering pets/show.html.erb within layouts/application
+  Rendered pets/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 33ms (Views: 23.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/6" for ::1 at 2016-11-02 10:16:20 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Pet with 'id'=6):
+  
+app/controllers/pets_controller.rb:8:in `show'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.2ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (106.9ms)
+Started GET "/pets/6" for ::1 at 2016-11-02 10:17:08 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+Completed 404 Not Found in 14ms (ActiveRecord: 5.6ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Pet with 'id'=6):
+  
+app/controllers/pets_controller.rb:8:in `show'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.1ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (104.5ms)
+Started GET "/pets/6" for ::1 at 2016-11-02 10:17:09 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Pet with 'id'=6):
+  
+app/controllers/pets_controller.rb:8:in `show'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.6ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (102.6ms)
+Started GET "/pets/6" for ::1 at 2016-11-02 10:17:10 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Pet with 'id'=6):
+  
+app/controllers/pets_controller.rb:8:in `show'
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.6ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (104.6ms)
+Started GET "/pets/6" for ::1 at 2016-11-02 10:17:39 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering pets/show.html.erb within layouts/application
+  Rendered pets/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 40ms (Views: 27.9ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/pets/6" for ::1 at 2016-11-02 10:17:41 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering pets/show.html.erb within layouts/application
+  Rendered pets/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 29ms (Views: 24.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/6" for ::1 at 2016-11-02 10:18:06 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering pets/show.html.erb within layouts/application
+  Rendered pets/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 40ms (Views: 25.8ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:18:20 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mToy Load (0.2ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 6]]
+Completed 200 OK in 6ms (Views: 1.0ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:20:43 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (1.1ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."pet_id" = $1 LIMIT $2[0m  [["pet_id", "6"], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 11ms (ActiveRecord: 3.1ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:20:44 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (0.7ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."pet_id" = $1 LIMIT $2[0m  [["pet_id", "6"], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 3ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:20:45 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (0.6ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."pet_id" = $1 LIMIT $2[0m  [["pet_id", "6"], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 2ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:20:51 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (0.7ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."pet_id" = $1 LIMIT $2[0m  [["pet_id", "6"], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 3ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:20:52 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (0.6ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."pet_id" = $1 LIMIT $2[0m  [["pet_id", "6"], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:21:06 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (0.7ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."pet_id" = $1 LIMIT $2[0m  [["pet_id", "6"], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 2ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:21:10 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (1.1ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."pet_id" = $1 LIMIT $2[0m  [["pet_id", "6"], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 4ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:21:11 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (0.6ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."pet_id" = $1 LIMIT $2[0m  [["pet_id", "6"], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 12ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:21:11 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (0.9ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."pet_id" = $1 LIMIT $2[0m  [["pet_id", "6"], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 3ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:21:12 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (0.8ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."pet_id" = $1 LIMIT $2[0m  [["pet_id", "6"], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 3ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:21:12 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (0.8ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."pet_id" = $1 LIMIT $2[0m  [["pet_id", "6"], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 3ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:21:38 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 17ms (ActiveRecord: 4.6ms)
+
+
+Started GET "/pets/6/toys" for ::1 at 2016-11-02 10:21:39 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"6"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:21:52 -0700
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:21:52 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 23ms (ActiveRecord: 3.8ms)
+
+
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 18ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:21:57 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mPet Load (0.8ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 6ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:21:57 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 8ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/" for ::1 at 2016-11-02 10:22:07 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pets/show.html.erb within layouts/application
+  Rendered pets/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 27ms (Views: 23.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:22:11 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:22:11 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:22:16 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:22:16 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mPet Load (0.5ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 8ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/pets/1/" for ::1 at 2016-11-02 10:22:40 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pets/show.html.erb within layouts/application
+  Rendered pets/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 29ms (Views: 25.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/" for ::1 at 2016-11-02 10:22:40 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPet Load (0.5ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pets/show.html.erb within layouts/application
+  Rendered pets/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 29ms (Views: 25.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:22:43 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:22:45 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000pets#index
+Completed 302 Found in 6ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/1/" for ::1 at 2016-11-02 10:22:51 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPet Load (0.2ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pets/show.html.erb within layouts/application
+  Rendered pets/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 49ms (Views: 30.6ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:23:00 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering toys/index.html.erb within layouts/application
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  Rendered toys/index.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 48ms (Views: 30.4ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:23:16 -0700
+  
+SyntaxError (/Users/apprentice/assessment/phase-3-assessment/phase3/app/controllers/toys_controller.rb:7: syntax error, unexpected tIVAR, expecting keyword_end):
+  
+app/controllers/toys_controller.rb:7: syntax error, unexpected tIVAR, expecting keyword_end
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.4ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (15.7ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (126.0ms)
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:23:28 -0700
+  
+SyntaxError (/Users/apprentice/assessment/phase-3-assessment/phase3/app/controllers/toys_controller.rb:7: syntax error, unexpected tIVAR, expecting keyword_end):
+  
+app/controllers/toys_controller.rb:7: syntax error, unexpected tIVAR, expecting keyword_end
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.4ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (114.3ms)
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:23:40 -0700
+  
+SyntaxError (/Users/apprentice/assessment/phase-3-assessment/phase3/app/controllers/toys_controller.rb:11: syntax error, unexpected tIVAR, expecting keyword_end):
+  
+app/controllers/toys_controller.rb:11: syntax error, unexpected tIVAR, expecting keyword_end
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.7ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (103.3ms)
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:23:41 -0700
+  
+SyntaxError (/Users/apprentice/assessment/phase-3-assessment/phase3/app/controllers/toys_controller.rb:11: syntax error, unexpected tIVAR, expecting keyword_end):
+  
+app/controllers/toys_controller.rb:11: syntax error, unexpected tIVAR, expecting keyword_end
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.1ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (112.0ms)
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:24:00 -0700
+  
+SyntaxError (/Users/apprentice/assessment/phase-3-assessment/phase3/app/controllers/toys_controller.rb:5: syntax error, unexpected tIVAR, expecting keyword_end):
+  
+app/controllers/toys_controller.rb:5: syntax error, unexpected tIVAR, expecting keyword_end
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (105.9ms)
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:24:02 -0700
+  
+SyntaxError (/Users/apprentice/assessment/phase-3-assessment/phase3/app/controllers/toys_controller.rb:5: syntax error, unexpected tIVAR, expecting keyword_end):
+  
+app/controllers/toys_controller.rb:5: syntax error, unexpected tIVAR, expecting keyword_end
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.1ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendering /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (105.6ms)
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:24:14 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[36mToy Load (0.2ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 13ms (Views: 5.8ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:25:06 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 14ms (Views: 6.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:25:07 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pets/5/toys" for ::1 at 2016-11-02 10:25:10 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"5"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 5]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 10:25:10 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (10.2ms)
+Completed 200 OK in 37ms (Views: 29.3ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 10:28:05 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 41ms (Views: 32.4ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 10:28:20 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 34ms (Views: 30.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:28:23 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 22ms (Views: 10.5ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:28:23 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/1" for ::1 at 2016-11-02 10:28:32 -0700
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pets/show.html.erb within layouts/application
+  Rendered pets/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 31ms (Views: 26.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets" for ::1 at 2016-11-02 10:28:35 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 33ms (Views: 30.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:28:37 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:28:37 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pets/" for ::1 at 2016-11-02 10:28:42 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 31ms (Views: 28.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:28:42 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:28:43 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets" for ::1 at 2016-11-02 10:32:29 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 103ms (Views: 100.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:32:34 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:32:36 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:32:37 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:32:37 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:32:38 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:32:39 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:32:39 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:32:41 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:32:42 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.8ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:32:42 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 5ms (Views: 1.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:32:42 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:32:42 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.9ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:32:43 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:32:43 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:32:43 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/pets" for ::1 at 2016-11-02 10:34:09 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 98ms (Views: 94.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:34:11 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.7ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/pets" for ::1 at 2016-11-02 10:37:09 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.7ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 101ms (Views: 97.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:37:11 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/pets" for ::1 at 2016-11-02 10:37:28 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (1.2ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 104ms (Views: 100.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/pets" for ::1 at 2016-11-02 10:37:36 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 95ms (Views: 91.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:37:38 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:37:40 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:37:42 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/pets" for ::1 at 2016-11-02 10:37:58 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.5ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 115ms (Views: 112.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:37:59 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:38:01 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.7ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 6ms (Views: 2.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:38:02 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/pets" for ::1 at 2016-11-02 10:41:39 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 104ms (Views: 101.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:41:41 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:41:44 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets" for ::1 at 2016-11-02 10:41:51 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 105ms (Views: 102.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:41:52 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.6ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:41:53 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:41:54 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:41:55 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:41:56 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:41:56 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:41:56 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:41:56 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:41:56 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:41:56 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pets" for ::1 at 2016-11-02 10:42:09 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 108ms (Views: 105.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:42:11 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:42:11 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:42:13 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:42:33 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:42:34 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:42:34 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:42:34 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 3ms (Views: 1.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:42:34 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 10:43:49 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.erb within layouts/application
+  [1m[36mPet Load (0.7ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 33ms (Views: 29.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:43:53 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:43:54 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:43:55 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 10:44:41 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.haml within layouts/application
+  [1m[36mPet Load (0.4ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.haml within layouts/application (4.2ms)
+Completed 200 OK in 47ms (Views: 44.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:44:42 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:44:43 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:44:44 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/home" for ::1 at 2016-11-02 10:44:48 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.haml within layouts/application
+  [1m[36mPet Load (0.3ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.haml within layouts/application (3.8ms)
+Completed 200 OK in 37ms (Views: 33.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:45:28 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.3ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:45:29 -0700
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pets/1/toys" for ::1 at 2016-11-02 10:47:27 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ToysController#index as HTML
+  Parameters: {"pet_id"=>"1"}
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 1]]
+Completed 200 OK in 39ms (Views: 7.7ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 10:47:33 -0700
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.haml within layouts/application
+  [1m[36mPet Load (0.8ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.haml within layouts/application (23.4ms)
+Completed 200 OK in 384ms (Views: 373.0ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/" for ::1 at 2016-11-02 10:48:38 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PetsController#index as HTML
+  Rendering pets/index.html.haml within layouts/application
+  [1m[36mPet Load (0.5ms)[0m  [1m[34mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.haml within layouts/application (26.8ms)
+Completed 200 OK in 351ms (Views: 322.7ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/pets/2/toys" for ::1 at 2016-11-02 10:48:42 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"2"}
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 2]]
+Completed 200 OK in 23ms (Views: 6.2ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/pets/3/toys" for ::1 at 2016-11-02 10:48:43 -0700
+Processing by ToysController#index as JS
+  Parameters: {"pet_id"=>"3"}
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+  [1m[36mToy Load (0.4ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."pet_id" = $1[0m  [["pet_id", 3]]
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 1.2ms)
+
+
