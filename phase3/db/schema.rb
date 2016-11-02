@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20161102161938) do
 
   create_table "toys", force: :cascade do |t|
     t.string   "description"
+    t.integer  "pet_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
