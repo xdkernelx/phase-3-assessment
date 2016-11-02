@@ -2,7 +2,11 @@ class ToysController < ApplicationController
 
   def index
     @toys = Toy.where(pet_id: params[:pet_id])
-    render json: @toys
+    if @toys.empty?
+      redirect_to '/'
+    else
+      render json: @toys
+    end
   end
 
   def show
