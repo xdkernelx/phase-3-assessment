@@ -2,10 +2,13 @@
   .pet
     = link_to pet.name, pet_toys_path(pet), class: 'pet-toys', remote: true
     %br/
+    Breed:
     = pet.breed
     %br/
+    Age:
     = pet.age
     %br/
+    Cute?
     = pet.cute
     %br/
   %br/
