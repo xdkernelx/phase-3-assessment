@@ -5,7 +5,7 @@ class ToysController < ApplicationController
   end
 
   def show
-
+    @toy = Toy.find_by(pet_id: params[:pet_id], id: params[:id])
   end
 
 end
